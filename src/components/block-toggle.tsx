@@ -69,7 +69,7 @@ export function BlockToggle() {
         chromeObj.storage.local.set({ 'youtube-blocked': String(newState) });
       }
     } catch (error) {
-      console.log('YouTube Blocker Web: Direct Chrome storage not available');
+      console.log('YouTube Blocker Web: Direct Chrome storage not available', error);
     }
   };
 
