@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Blocker",
+  "version": "0.1.0",
+  "description": "Blocks YouTube and redirects to a helpful page.",
+  "permissions": [
+    "declarativeNetRequest",
+    "webNavigation",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "https://m.youtube.com/*",
+    "https://music.youtube.com/*",
+    "https://youtubei.googleapis.com/*",
+    "https://youtube-blocker-tracker.windsurf.build/*",
+    "http://localhost:3000/*",
+    "http://localhost:3001/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://youtube-blocker-tracker.windsurf.build/*",
+        "http://localhost:3001/*",
+        "http://localhost:3000/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": false,
+        "path": "rules_1.json"
+      }
+    ]
+  },
+  "action": {
+    "default_title": "YouTube Blocker"
+  }
+}

@@ -24,3 +24,66 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Confetti Button Animation */
+.confetti-btn {
+  position: relative;
+}
+
+.confetti-btn .confetti-piece {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 10px;
+  border-radius: 1px;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.confetti-active .confetti-piece {
+  animation: confetti-burst 900ms ease-out forwards;
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot));
+  }
+}
+
+/* Pieces directions and colors */
+.confetti-piece.cp-1  { --dx: -90px;  --dy: -120px; --rot: 240deg; background: #ef4444; }
+.confetti-piece.cp-2  { --dx: -60px;  --dy: -130px; --rot: 200deg; background: #22c55e; }
+.confetti-piece.cp-3  { --dx: -20px;  --dy: -135px; --rot: 190deg; background: #3b82f6; }
+.confetti-piece.cp-4  { --dx:  20px;  --dy: -140px; --rot: 210deg; background: #eab308; }
+.confetti-piece.cp-5  { --dx:  60px;  --dy: -130px; --rot: 260deg; background: #a855f7; }
+.confetti-piece.cp-6  { --dx:  90px;  --dy: -120px; --rot: 280deg; background: #f97316; }
+.confetti-piece.cp-7  { --dx: -100px; --dy: -80px;  --rot: 200deg; background: #06b6d4; }
+.confetti-piece.cp-8  { --dx: -50px;  --dy: -90px;  --rot: 230deg; background: #10b981; }
+.confetti-piece.cp-9  { --dx:   0px;  --dy: -95px;  --rot: 250deg; background: #f59e0b; }
+.confetti-piece.cp-10 { --dx:  50px;  --dy: -90px;  --rot: 180deg; background: #ef4444; }
+.confetti-piece.cp-11 { --dx: 100px;  --dy: -80px;  --rot: 220deg; background: #3b82f6; }
+.confetti-piece.cp-12 { --dx: -70px;  --dy: -60px;  --rot: 260deg; background: #84cc16; }
+.confetti-piece.cp-13 { --dx:  70px;  --dy: -60px;  --rot: 300deg; background: #ec4899; }
+.confetti-piece.cp-14 { --dx:   0px;  --dy: -70px;  --rot: 320deg; background: #22c55e; }
+
+/* Slightly staggered start for variety */
+.confetti-active .confetti-piece.cp-1  { animation-delay: 0ms; }
+.confetti-active .confetti-piece.cp-2  { animation-delay: 20ms; }
+.confetti-active .confetti-piece.cp-3  { animation-delay: 40ms; }
+.confetti-active .confetti-piece.cp-4  { animation-delay: 60ms; }
+.confetti-active .confetti-piece.cp-5  { animation-delay: 80ms; }
+.confetti-active .confetti-piece.cp-6  { animation-delay: 100ms; }
+.confetti-active .confetti-piece.cp-7  { animation-delay: 0ms; }
+.confetti-active .confetti-piece.cp-8  { animation-delay: 20ms; }
+.confetti-active .confetti-piece.cp-9  { animation-delay: 40ms; }
+.confetti-active .confetti-piece.cp-10 { animation-delay: 60ms; }
+.confetti-active .confetti-piece.cp-11 { animation-delay: 80ms; }
+.confetti-active .confetti-piece.cp-12 { animation-delay: 100ms; }
+.confetti-active .confetti-piece.cp-13 { animation-delay: 120ms; }
+.confetti-active .confetti-piece.cp-14 { animation-delay: 140ms; }

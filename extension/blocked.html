@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YouTube Blocked</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 24px; display: grid; place-items: center; min-height: 100dvh; background: #f8fafc; color: #0f172a; }
+      .card { max-width: 560px; width: 100%; background: white; color: #0f172a; border-radius: 12px; border: 1px solid rgba(0,0,0,0.1); padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      p { margin: 8px 0 0; line-height: 1.5; }
+      .actions { display: flex; gap: 10px; margin-top: 16px; }
+      a.button { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 8px; text-decoration: none; background: #111827; color: white; }
+      .muted { color: #475569; font-size: 14px; }
+      @media (prefers-color-scheme: dark) {
+        body { background: #0b1020; color: #e5e7eb; }
+        .card { background: #111827; color: #e5e7eb; border-color: rgba(255,255,255,0.15); }
+        a.button { background: #e5e7eb; color: #111827; }
+        .muted { color: #94a3b8; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>YouTube is blocked</h1>
+      <p class="muted">This block helps you stay focused. Make a quick check-in about your progress, then get back to your task.</p>
+      <div class="actions">
+        <a class="button" href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Open Progress Dashboard</a>
+      </div>
+      <p class="muted">Tip: You can temporarily disable the extension if you need access intentionally.
+      </p>
+    </div>
+  </body>
+</html>
