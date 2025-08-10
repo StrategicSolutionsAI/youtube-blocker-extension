@@ -89,7 +89,7 @@ export default function Home() {
   return (
     <div className="font-sans min-h-screen p-6 sm:p-10">
       <main className="mx-auto max-w-3xl flex flex-col gap-6">
-        <h1 className="text-2xl font-bold">YouTube Blocker — Progress Dashboard</h1>
+        <h1 className="text-2xl font-bold">Bonnie's YouTube Blocker App</h1>
         <BlockToggle />
         <StatsCard stats={stats} />
         <CheckinForm />
