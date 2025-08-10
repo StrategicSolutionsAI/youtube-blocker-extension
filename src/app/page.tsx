@@ -106,51 +106,104 @@ export default function Home() {
   };
 
   return (
-    <div className="font-sans min-h-screen p-6 sm:p-10">
-      <main className="mx-auto max-w-3xl flex flex-col gap-6">
-        <h1 className="text-2xl font-bold">Bonnie&apos;s YouTube Blocker App</h1>
-        <BlockToggle />
-        <StatsCard stats={stats} />
-        <CheckinForm />
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8" style={{ fontFamily: 'Inter, sans-serif' }}>
+      <main className="mx-auto max-w-6xl">
+        {/* Compact Header */}
+        <div className="text-center py-4 sm:py-6 mb-4 sm:mb-6">
+          <h1 
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 bg-clip-text text-transparent"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Bonnie&apos;s YouTube Blocker
+          </h1>
+          <p className="text-base sm:text-lg text-gray-600 font-light">
+            Stay focused, track progress, celebrate success
+          </p>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mt-3"></div>
+        </div>
+        
+        {/* Desktop: Two-column layout for better space utilization */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          <BlockToggle />
+          <CheckinForm />
+        </div>
+        
+        {/* Combined Progress & Recent Check-ins Widget */}
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Recent Check-ins</CardTitle>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-xl">Progress & Recent Check-ins</CardTitle>
           </CardHeader>
-          <CardContent>
-            {recent.length === 0 ? (
-              <p className="text-sm text-black/60 dark:text-white/60">No check-ins yet. Make your first one above.</p>
-            ) : (
-              <ul className="divide-y divide-black/10 dark:divide-white/10">
-                {recent.map((r) => (
-                  <li key={r.date} className="py-2 flex items-start justify-between gap-4">
-                    <div>
-                      <div className="text-sm font-medium">{r.date}</div>
-                      {r.note ? (
-                        <div className="text-xs text-black/70 dark:text-white/70 mt-1">{r.note}</div>
-                      ) : null}
-                    </div>
-                    <Badge variant={r.status === "ok" ? "success" : "destructive"}>
-                      {r.status === "ok" ? "OK" : "Slip"}
-                    </Badge>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {recent.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-black/10 dark:border-white/10">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleReset}
-                  className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-950/20 border border-red-200 dark:border-red-800"
-                >
-                  Reset All Progress
-                </Button>
-                <p className="text-xs text-black/50 dark:text-white/50 mt-2">
-                  This will permanently delete all check-ins and statistics
-                </p>
+          <CardContent className="pt-0">
+            {/* Progress Stats Section */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+              <div className="text-center p-3 bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-lg border border-emerald-200/50">
+                <div className="text-lg sm:text-xl font-bold text-emerald-700" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {stats.totalOk}
+                </div>
+                <div className="text-xs text-emerald-600 font-medium">On Track</div>
               </div>
-            )}
+              <div className="text-center p-3 bg-gradient-to-br from-rose-50 to-rose-100/50 rounded-lg border border-rose-200/50">
+                <div className="text-lg sm:text-xl font-bold text-rose-700" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {stats.totalSlip}
+                </div>
+                <div className="text-xs text-rose-600 font-medium">Slips</div>
+              </div>
+              <div className="text-center p-3 bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-lg border border-amber-200/50">
+                <div className="text-lg sm:text-xl font-bold text-amber-700" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {stats.currentStreak}
+                </div>
+                <div className="text-xs text-amber-600 font-medium">Current</div>
+              </div>
+              <div className="text-center p-3 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-lg border border-purple-200/50">
+                <div className="text-lg sm:text-xl font-bold text-purple-700" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {stats.bestStreak}
+                </div>
+                <div className="text-xs text-purple-600 font-medium">Best</div>
+              </div>
+            </div>
+
+            {/* Recent Check-ins Section */}
+            <div className="border-t border-gray-100 pt-4">
+              <h4 className="text-sm font-semibold text-gray-700 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                Recent Activity
+              </h4>
+              {recent.length === 0 ? (
+                <p className="text-sm text-gray-500 text-center py-4">No check-ins yet. Make your first one above!</p>
+              ) : (
+                <ul className="divide-y divide-gray-100 space-y-0">
+                  {recent.slice(0, 6).map((r) => (
+                    <li key={r.date} className="py-2 first:pt-0 flex items-center justify-between gap-3">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-medium text-gray-800">{r.date}</div>
+                        {r.note ? (
+                          <div className="text-xs text-gray-600 mt-0.5 truncate">{r.note}</div>
+                        ) : null}
+                      </div>
+                      <Badge variant={r.status === "ok" ? "success" : "destructive"} className="flex-shrink-0">
+                        {r.status === "ok" ? "OK" : "Slip"}
+                      </Badge>
+                    </li>
+                  ))}
+                  {recent.length > 6 && (
+                    <li className="py-2 text-xs text-gray-400 text-center">
+                      ... and {recent.length - 6} more entries
+                    </li>
+                  )}
+                </ul>
+              )}
+              {recent.length > 0 && (
+                <div className="mt-4 pt-3 border-t border-gray-100">
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={handleReset}
+                    className="text-red-600 hover:text-red-700 hover:bg-red-50 border border-red-200 text-xs"
+                  >
+                    Reset All Progress
+                  </Button>
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
       </main>

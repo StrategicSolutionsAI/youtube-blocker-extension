@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 export function BlockToggle() {
   const [isBlocked, setIsBlocked] = useState(false);
@@ -74,40 +72,40 @@ export function BlockToggle() {
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle>YouTube Blocking</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium">
-            {isBlocked ? 'YouTube is blocked' : 'YouTube is accessible'}
-          </span>
-          <button
-            onClick={handleToggle}
-            disabled={isLoading}
-            className={cn(
-              "relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2",
-              isBlocked 
-                ? "bg-red-600 focus:ring-red-500" 
-                : "bg-gray-300 dark:bg-gray-600 focus:ring-gray-500"
-            )}
-            aria-label={isBlocked ? "Disable YouTube blocking" : "Enable YouTube blocking"}
-          >
-            <span
-              className={cn(
-                "inline-block h-4 w-4 transform rounded-full bg-white transition-transform",
-                isBlocked ? "translate-x-6" : "translate-x-1"
-              )}
-            />
-          </button>
-        </div>
-        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-          {isBlocked 
-            ? "YouTube and related domains are currently blocked"
-            : "You can access YouTube normally"}
+    <div className="flex items-center justify-between p-4 sm:p-6 border border-amber-100 rounded-xl bg-gradient-to-br from-white to-amber-50/30 shadow-lg shadow-amber-100/20 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:shadow-amber-100/30">
+      <div className="flex-1 min-w-0">
+        <h3 className="font-semibold text-lg sm:text-xl text-gray-800 mb-1" style={{ fontFamily: 'Playfair Display, serif' }}>
+          YouTube Blocking
+        </h3>
+        <p className="text-sm sm:text-base text-gray-600 font-medium">
+          {isBlocked ? (
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+              Currently blocked
+            </span>
+          ) : (
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              Currently allowed
+            </span>
+          )}
         </p>
-      </CardContent>
-    </Card>
+      </div>
+      <button
+        onClick={handleToggle}
+        disabled={isLoading}
+        className={`relative inline-flex h-7 w-14 sm:h-8 sm:w-16 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-amber-400/30 shadow-lg ${
+          isBlocked 
+            ? "bg-gradient-to-r from-red-500 to-red-600 shadow-red-500/25" 
+            : "bg-gradient-to-r from-green-500 to-green-600 shadow-green-500/25"
+        } hover:scale-105 flex-shrink-0`}
+      >
+        <span
+          className={`inline-block h-5 w-5 sm:h-6 sm:w-6 transform rounded-full bg-white shadow-md transition-all duration-300 ${
+            isBlocked ? "translate-x-8 sm:translate-x-9" : "translate-x-1"
+          }`}
+        />
+      </button>
+    </div>
   );
 }

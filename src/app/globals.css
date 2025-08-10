@@ -1,28 +1,65 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Elegant color palette inspired by paper designs */
+  --cream: #faf8f5;
+  --warm-white: #fefdfb;
+  --sage: #9caf88;
+  --sage-light: #b8c9a8;
+  --sage-dark: #7a8f6b;
+  --gold: #d4af37;
+  --gold-light: #e8c547;
+  --charcoal: #2c2c2c;
+  --warm-gray: #6b6b6b;
+  --light-gray: #e8e6e1;
+  --paper-shadow: rgba(0, 0, 0, 0.08);
+  --soft-shadow: rgba(0, 0, 0, 0.04);
+  
+  /* Legacy variables for compatibility */
+  --background: var(--cream);
+  --foreground: var(--charcoal);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  color: var(--charcoal);
+  
+  /* Paper-inspired background with subtle texture and pattern */
+  background: 
+    /* Subtle geometric pattern */
+    radial-gradient(circle at 25px 25px, rgba(212, 175, 55, 0.08) 1px, transparent 1px),
+    /* Organic paper texture */
+    radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
+    /* Base gradient */
+    linear-gradient(135deg, #fefdf9 0%, #faf8f1 100%);
+  background-size: 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Paper texture background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+  background-size: 20px 20px;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Confetti Button Animation */
